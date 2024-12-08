@@ -11,7 +11,7 @@ install:
 	cargo install --path ./sqlite
 
 check:
-	cargo check
+	cargo check --path ./sqlite
 
 format:
 	cargo fmt --quiet --manifest-path ./sqlite/Cargo.toml
