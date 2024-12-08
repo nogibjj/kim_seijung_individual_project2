@@ -10,6 +10,9 @@ version:
 install:
 	cargo install --path ./sqlite
 
+check:
+	cargo check
+
 format:
 	cargo fmt --quiet --manifest-path ./sqlite/Cargo.toml
 

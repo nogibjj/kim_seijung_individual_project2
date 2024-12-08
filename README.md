@@ -1,4 +1,5 @@
 Check CI/CD Status:
+[![CICD](https://github.com/nogibjj/kim_seijung_individual_project2/actions/workflows/cicd.yml/badge.svg)](https://github.com/nogibjj/kim_seijung_individual_project2/actions/workflows/cicd.yml)
 
 # Individual Project #2
 #### Repo Title: Rust CLI Binary with SQLite
