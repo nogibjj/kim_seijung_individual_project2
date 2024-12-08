@@ -12,9 +12,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    env:
-      WORKING_DIR: sqlite
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -27,23 +24,23 @@ jobs:
 
     - name: Check
       run: make check
-      working-directory: ${{ env.WORKING_DIR }}
+      working-directory: .  # Set the working directory to the root directory
 
     - name: Format
       run: make format
-      working-directory: ${{ env.WORKING_DIR }}
+      working-directory: .  # Set the working directory to the root directory
 
     - name: Test
       run: make test
-      working-directory: ${{ env.WORKING_DIR }}
+      working-directory: .  # Set the working directory to the root directory
 
     - name: Release
       run: make release
-      working-directory: ${{ env.WORKING_DIR }}
+      working-directory: .  # Set the working directory to the root directory
 
     # Upload the binary file as an artifact
     - name: Upload Binary Artifact
       uses: actions/upload-artifact@v4
       with:
         name: release-binary
-        path: ${{ env.WORKING_DIR }}/target/release/sqlite
+        path: ./sqlite/target/release/sqlite  # Assuming the binary is built in sqlite/target/release
