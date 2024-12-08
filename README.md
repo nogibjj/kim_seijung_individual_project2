@@ -61,6 +61,7 @@ By using GitHub Copilot, I was able to speed up the development of the project, 
 
 
 ## Demo Video
+https://youtu.be/jHeqY_lVxQw
 
 
 ## Screenshots of CLI Usage

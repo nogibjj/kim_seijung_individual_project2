@@ -100,13 +100,21 @@ pub fn read(conn: &Connection, query: &str) -> Result<()> {
         Ok((user_id, age, salary, years_of_experience))
     })?;
 
+    // Ensure the result set is not empty
+    let mut has_rows = false;
+
     // Iterate through the result set and print each row
     for row in rows {
+        has_rows = true;
         let (user_id, age, salary, years_of_experience) = row?;
         println!(
             "user_id: {}, age: {}, salary: {}, years_of_experience: {}",
             user_id, age, salary, years_of_experience
         );
+    }
+
+    if !has_rows {
+        println!("No records found for the query.");
     }
 
     Ok(())
