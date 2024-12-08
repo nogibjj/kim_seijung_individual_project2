@@ -1,25 +1,28 @@
+# Rust
+version:
+	echo "Rust command-line utility versions:"
+	rustc --version              # Rust compiler
+	cargo --version              # Rust package manager
+	rustfmt --version            # Rust code formatter
+	rustup --version             # Rust toolchain manager
+	clippy-driver --version      # Rust linter
+
 install:
-	pip install --upgrade pip &&\
-		pip install -r requirements.txt
+	cargo install --path ./sqlite
 
-test:
-	python3 -m pytest -vv --cov=main --cov=mylib test_*.py
-
-format:	
-	black *.py 
+format:
+	cargo fmt --quiet --manifest-path ./sqlite/Cargo.toml
 
 lint:
-	#disable comment to test speed
-	#pylint --disable=R,C --ignore-patterns=test_.*?py *.py mylib/*.py
-	#ruff linting is 10-100X faster than pylint
-	ruff check *.py mylib/*.py
+	cargo clippy --quiet --manifest-path ./sqlite/Cargo.toml
 
-container-lint:
-	docker run --rm -i hadolint/hadolint < Dockerfile
+test:
+	cargo test --quiet --manifest-path ./sqlite/Cargo.toml
 
-refactor: format lint
+run:
+	cd sqlite && cargo run --release create employee
 
-deploy:
-	#deploy goes here
-		
-all: install lint test format deploy
+release:
+	cargo build --release --manifest-path ./sqlite/Cargo.toml
+
+all: format lint test run
